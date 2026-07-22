@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Tes Kelulusan Sorogan | Pondok Pesantren Al Hikmah Darussalam</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas for Download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hidden Capture Container for Download -->
+    <div id="capture-container" style="display:none;">
+        <div class="capture-header">
+            <div class="capture-logo">
+                <img src="polos.png" alt="Logo Pesantren">
+            </div>
+            <div class="capture-title-wrapper">
+                <h2>REKAP HASIL TES KELULUSAN SOROGAN</h2>
+                <p>Santri Pondok Pesantren Al Hikmah Darussalam</p>
+                <div class="capture-meta" id="capture-meta-text">Tanggal: - | Total Peserta: 0</div>
+            </div>
+        </div>
+        <table id="capture-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Santri</th>
+                    <th>Kitab</th>
+                    <th>Tahapan</th>
+                    <th>Perbaikan Utama</th>
+                    <th>Nilai Akhir</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody id="capture-tbody">
+                <!-- Populated dynamically -->
+            </tbody>
+        </table>
+        <div class="capture-footer">
+            <p>Dokumen Resmi Rekapitulasi Hasil Tes Sorogan — Pesantren Al Hikmah Darussalam</p>
+        </div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-titles">
+                    <h1>REKAP HASIL TES KELULUSAN SOROGAN</h1>
+                    <p class="sub-title">Santri Pondok Pesantren Al Hikmah Darussalam</p>
+                </div>
+                <div class="header-logo">
+                    <img src="polos.png" alt="Logo Pesantren">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Summary Cards -->
+        <section class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-icon icon-total">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Jumlah Peserta</span>
+                    <h3 id="stat-total">0</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-pass">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Lulus</span>
+                    <h3 id="stat-pass">0</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-fail">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Tidak Lulus</span>
+                    <h3 id="stat-fail">0</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-rate">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Kelulusan</span>
+                    <h3 id="stat-rate">0%</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Control Toolbar (Search, Filter, Actions) -->
+        <section class="toolbar-section">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Cari nama santri...">
+            </div>
+            <div class="filter-group">
+                <div class="filter-item">
+                    <label for="filter-status"><i class="fa-solid fa-filter"></i> Status:</label>
+                    <select id="filter-status">
+                        <option value="semua">Semua Status</option>
+                        <option value="lulus">Lulus</option>
+                        <option value="tidak-lulus">Tidak Lulus</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label for="filter-kitab"><i class="fa-solid fa-book"></i> Kitab:</label>
+                    <select id="filter-kitab">
+                        <option value="semua">Semua Kitab</option>
+                        <option value="Awwaluma">Awwaluma</option>
+                        <option value="Sulam Munajat">Sulam Munajat</option>
+                        <option value="Mukhtashar">Mukhtashar</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label for="filter-tahapan"><i class="fa-solid fa-layer-group"></i> Tahapan:</label>
+                    <select id="filter-tahapan">
+                        <option value="semua">Semua Tahapan</option>
+                        <option value="Batas 1">Batas 1</option>
+                        <option value="Batas 2">Batas 2</option>
+                        <option value="Batas 3">Batas 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button id="btn-download" class="btn btn-success" title="Download Gambar PNG Resolusi Tinggi">
+                    <i class="fa-solid fa-download"></i> Download Rekap
+                </button>
+                <button id="btn-reset" class="btn btn-danger" title="Reset Seluruh Data">
+                    <i class="fa-solid fa-rotate-right"></i> Reset Semua
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Table Section -->
+        <main class="table-card">
+            <div class="table-responsive">
+                <table id="sorogan-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">No</th>
+                            <th style="width: 20%;">Nama Santri</th>
+                            <th style="width: 14%;">Kitab</th>
+                            <th style="width: 12%;">Tahapan Tes</th>
+                            <th style="width: 26%;">Kesalahan (Kedudukan, Lafadz, Makna)</th>
+                            <th style="width: 12%;">Perbaikan</th>
+                            <th style="width: 8%;">Nilai</th>
+                            <th style="width: 11%;">Keterangan</th>
+                            <th style="width: 5%; text-align: center;"><i class="fa-solid fa-gear"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Dynamic rows injected here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-footer-actions">
+                <button id="btn-add-row" class="btn btn-primary">
+                    <i class="fa-solid fa-user-plus"></i> Tambah Peserta
+                </button>
+                <span class="table-hint"><i class="fa-solid fa-circle-info"></i> Perhitungan nilai, status, dan perbaikan berjalan secara otomatis real-time.</span>
+            </div>
+        </main>
+
+        <!-- App Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 Pondok Pesantren Al Hikmah Darussalam. Platform Rekap Otomatis Tes Kelulusan Sorogan</p>
+        </footer>
+    </div>
+
+    <!-- Confirmation Modal for Reset -->
+    <div id="reset-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon warning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3>Konfirmasi Reset Data</h3>
+            <p>Apakah Anda yakin ingin menghapus seluruh data penilaian peserta? Tindakan ini tidak dapat dibatalkan.</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="btn btn-secondary">Batal</button>
+                <button id="modal-confirm" class="btn btn-danger">Ya, Reset Semua</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check" id="toast-icon"></i>
+        <span id="toast-msg">Berhasil disimpan</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
